@@ -14,10 +14,9 @@ def run():
             user_pb2.UserRequest(user_id=1)
         )
 
-        print(
-            f"Respon dari Server -> Nama: {response.name}, "
-            f"Email: {response.email}"
-        )
+        print(f"Respon dari Server -> Nama: {response.name}")
+        print(f"Email: {response.email}")
+        print(f"Telepon: {response.phone}")
 
 
 if __name__ == '__main__':

@@ -11,10 +11,11 @@ message UserRequest {
     int32 user_id = 1;
 }
 
-// Kontrak Response: Server akan mengembalikan nama dan email
+// Kontrak Response: Server akan mengembalikan nama, email, dan nomor telepon
 message UserResponse {
     string name = 1;
     string email = 2;
+    string phone = 3;
 }
 
 // Definisi Service gRPC

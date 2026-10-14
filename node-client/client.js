@@ -1,4 +1,3 @@
-
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 const path = require('path');
@@ -24,13 +23,18 @@ function main() {
     console.log('Mengirim request ke Go Server menggunakan Node.js...');
 
     client.GetUserProfile({ user_id: 1 }, (error, response) => {
-        if (!error) {
-            console.log(
-                `Respon dari Server -> Nama: ${response.name}, Email: ${response.email}`
-            );
-        } else {
-            console.error('Terjadi error:', error);
+        if (error) {
+            console.error('Terjadi error:', error.message);
+            return;
         }
+
+        console.log(
+            `Respon dari Server -> Nama: ${response.name}, ` +
+            `Email: ${response.email}, ` +
+            `Telepon: ${response.phone}`
+        );
+
+        client.close();
     });
 }
 

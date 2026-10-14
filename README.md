@@ -1,0 +1,3 @@
+## Perbedaan Static dan Dynamic Code Generation
+
+Pada implementasi gRPC polyglot ini, bahasa Go dan Python menggunakan **static code generation**, yaitu kode komunikasi gRPC dibuat terlebih dahulu dari file `user.proto` menggunakan compiler `protoc` dan plugin yang sesuai. Kode hasil generasi kemudian digunakan oleh server Go dan client Python. Sementara itu, Node.js menggunakan **dynamic runtime generation** melalui library `@grpc/proto-loader`, yang membaca file `user.proto` saat aplikasi dijalankan. Dengan demikian, Node.js tidak memerlukan proses generasi kode secara terpisah. Kedua pendekatan tersebut memungkinkan aplikasi yang menggunakan bahasa pemrograman berbeda untuk berkomunikasi melalui kontrak data gRPC yang sama.
