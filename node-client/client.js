@@ -15,8 +15,10 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
 const userProto = grpc.loadPackageDefinition(packageDefinition).user;
 
 function main() {
+    const serverAddress = process.env.GRPC_SERVER || 'localhost:50051';
+
     const client = new userProto.UserService(
-        'localhost:50051',
+        serverAddress,
         grpc.credentials.createInsecure()
     );
 
@@ -25,6 +27,8 @@ function main() {
     client.GetUserProfile({ user_id: 1 }, (error, response) => {
         if (error) {
             console.error('Terjadi error:', error.message);
+            client.close();
+            process.exitCode = 1;
             return;
         }
 
